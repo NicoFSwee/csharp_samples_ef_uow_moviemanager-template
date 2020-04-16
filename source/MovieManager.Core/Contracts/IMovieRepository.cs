@@ -6,6 +6,6 @@ namespace MovieManager.Core.Contracts
     {
         void AddRange(Movie[] movies);
         Movie GetLongestMovie();
-        int GetYearWhereMostMoviesWereReleased(string genre);
+        int GetYearWhereMostMoviesWereReleasedByGenre(string genre);
     }
 }

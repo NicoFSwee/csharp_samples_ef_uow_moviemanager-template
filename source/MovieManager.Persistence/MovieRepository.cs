@@ -19,7 +19,7 @@ namespace MovieManager.Persistence
         public Movie GetLongestMovie() => _dbContext.Movies
                                                 .OrderByDescending(m => m.Duration)
                                                 .ThenBy(m => m.Title).First();
-        public int GetYearWhereMostMoviesWereReleased(string genre)
+        public int GetYearWhereMostMoviesWereReleasedByGenre(string genre)
         {
             Dictionary<int, int> yearWithAmountOfMovies = new Dictionary<int, int>();
 
