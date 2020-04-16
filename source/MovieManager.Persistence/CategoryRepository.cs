@@ -30,7 +30,7 @@ namespace MovieManager.Persistence
             { 
                 Category = c, 
                 Count = c.Movies.Count(), 
-                OverallDuration = c.Movies.Sum(m => m.Duration) 
+                OverallDuration = (double)c.Movies.Sum(m => m.Duration) 
             })
             .OrderBy(_ => _.Category.CategoryName);
     }

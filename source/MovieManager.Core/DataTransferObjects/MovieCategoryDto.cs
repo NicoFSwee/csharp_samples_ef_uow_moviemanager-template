@@ -9,6 +9,6 @@ namespace MovieManager.Core.DataTransferObjects
     {
         public Category Category { get; set; }
         public int Count { get; set; }
-        public int OverallDuration { get; set; }
+        public double OverallDuration { get; set; }
     }
 }

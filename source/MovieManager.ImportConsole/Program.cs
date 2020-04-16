@@ -91,11 +91,11 @@ namespace MovieManager.ImportConsole
                 Console.WriteLine();
                 var movieCategorieDtos = unitOfWork.CategoryRepository.GetMovieCategoryDtos();
 
-                Console.WriteLine("Kategorie   Anzahl   Gesamtdauer");
+                Console.WriteLine("{0, -13}{1, -8}{2, -10}", "Kategorie", "Anzahl", "Gesamtdauer");
                 Console.WriteLine("================================");
                 foreach(var dto in movieCategorieDtos)
                 {
-                    Console.WriteLine($"{dto.Category.CategoryName}   {dto.Count}   {GetDurationAsString(dto.OverallDuration)}");
+                    Console.WriteLine($"{dto.Category.CategoryName, -13}{dto.Count, -8}{GetDurationAsString(dto.OverallDuration), -10}");
                 }
 
                 // Kategorie Auswertung (Teil 2):
@@ -107,11 +107,11 @@ namespace MovieManager.ImportConsole
                 movieCategorieDtos = movieCategorieDtos.OrderByDescending(_ => _.OverallDuration / _.Count);
                 Console.WriteLine();
 
-                Console.WriteLine("Kategorie   durchschn. Gesamtdauer");
-                Console.WriteLine("================================");
+                Console.WriteLine("{0, -15}{1, -20}", "Kategorie", "durchschn. Gesamtdauer");
+                Console.WriteLine("=====================================");
                 foreach (var dto in movieCategorieDtos)
                 {
-                    Console.WriteLine($"{dto.Category.CategoryName}  {GetAverageDurationAsString(dto.OverallDuration, dto.Count)}");
+                    Console.WriteLine($"{dto.Category.CategoryName, -15}{GetAverageDurationAsString(dto.OverallDuration, dto.Count), -20}");
                 }
             }
 
@@ -127,10 +127,10 @@ namespace MovieManager.ImportConsole
 
         private static string GetAverageDurationAsString(double minutes, int movieCount)
         {
-            double avgTime = minutes / movieCount;
-            int avgHours = (int)avgTime / 60;
-            int avgMinutes = (int)avgTime - avgHours * 60;
-            int avgSeconds = (int)avgTime - avgHours * 60 - avgMinutes;
+            double avgTime = minutes * 60 / movieCount;
+            int avgHours = (int)avgTime / 3600;
+            int avgMinutes = ((int)avgTime - avgHours * 3600) / 60;
+            int avgSeconds = ((int)avgTime - avgHours * 3600) - avgMinutes * 60;
 
             return $"{avgHours:D2} h {avgMinutes:D2} min {avgSeconds:D2} sec";
         }
