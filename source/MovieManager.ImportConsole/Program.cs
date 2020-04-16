@@ -66,7 +66,7 @@ namespace MovieManager.ImportConsole
                 // Die Dauer des längsten Films soll in Stunden und Minuten angezeigt werden!
                 //TODO
                 var longestMovie = unitOfWork.MovieRepository.GetLongestMovie();
-                Console.WriteLine($"Längster Film: {longestMovie.Title}; Länge: {longestMovie.Duration}");
+                Console.WriteLine($"Längster Film: {longestMovie.Title}; Länge: {GetDurationAsString(longestMovie.Duration)}");
                 Console.WriteLine();
 
                 // Top Kategorie:
