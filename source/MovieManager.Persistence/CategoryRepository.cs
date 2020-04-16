@@ -18,7 +18,15 @@ namespace MovieManager.Persistence
 
         public (Category category, int count) GetCategoryWithMostMovies()
         {
-            var tmp = _dbContext.Categories.OrderByDescending(c => c.Movies.Count()).Select(_ => new { Category = _, Count = _.Movies.Count() }).First();
+            var tmp = _dbContext
+                        .Categories
+                        .OrderByDescending(c => c.Movies.Count())
+                        .Select(_ => new 
+                        { 
+                            Category = _, 
+                            Count = _.Movies.Count() 
+                        })
+                        .First();
 
             return new ValueTuple<Category, int>(tmp.Category, tmp.Count);
         }
